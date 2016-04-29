@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Теплофид</string>
+    <string name="locale">ru</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="hello_world" translatable="false">Winter Wine</string>
+    <string name="title_activity_auth">Авторизация</string>
+    <string name="title_activity_feed">Лента</string>
+    <string name="title_activity_categories">Категории</string>
+    <string name="title_activity_favorites">Избранное</string>
+    <string name="title_activity_photo">Фотографии</string>
+    <string name="title_activity_share">Поделиться записью</string>
+    <string name="menu_auth_change">Сменить аккаунт</string>
+    <string name="menu_auth_out">Выйти</string>
+    <string name="toast_vk_auth_fail">Ошибка авторизации ВКонтакте</string>
+
+    <!-- FeedActivity -->
+    <string name="navigation_unauthorized_name">Войти через ВК</string>
+    <string name="navigation_categories_caption">Категории</string>
+    <string name="navigation_favorite_caption">Избранное</string>
+    <string name="navigation_rate_caption">Оценить приложение</string>
+    <string name="navigation_suggest_caption">Предложить источник</string>
+    <string name="navigation_donate_caption">Поддержать</string>
+    <string name="toast_favorites_add">Добавлено в Избранное</string>
+    <string name="toast_favorites_del">Удалено из Избранного</string>
+    <string name="toast_rate_wish">Положительная оценка лучше всего мотивирует разработчика ;)</string>
+    <string name="text_ad_sponsored">Реклама</string>
+
+    <!-- Post -->
+    <string name="post_info_through">" через "</string>
+    <string name="post_date_now">Только что</string>
+    <string name="post_date_minute">Минуту назад</string>
+    <string name="post_date_minutes">" минуту/ минуты/ минут"</string>
+    <string name="post_date_ago">" назад"</string>
+    <string name="post_date_hour">Час назад</string>
+    <string name="post_date_hours">" час/ часа/ часов"</string>
+
+    <!-- InfoItem -->
+    <string name="info_no_data_caption">Данные не получены</string>
+    <string name="info_no_data_message">Что-то не так с соединением или сервером ленты</string>
+    <string name="info_no_connection_caption">Нет соединения</string>
+    <string name="info_no_connection_message">Почтовый голубь с новыми постами уже в пути</string>
+
+    <!-- PhotoActivity -->
+    <string name="menu_photo_save">Сохранить</string>
+    <string name="menu_photo_save_vk">Сохранить в ВК</string>
+    <string name="toast_photo_saved_vk">Фото сохранено в альбом\n\"Сохраненные фотографии\"</string>
+    <string name="toast_photo_saved">Фото сохранено в галлерею</string>
+    <string name="toast_photo_save_error">Не удалось сохранить фото</string>
+
+    <!-- ShareActivity-->
+    <string name="variant_vk">Поделиться на Стене</string>
+    <string name="variant_text">Отправить текст</string>
+    <string name="variant_url">Отправить ссылку</string>
+    <string name="variant_browser">Открыть в браузере</string>
+    <string name="toast_post_copied">Запись опубликована</string>
+    <string name="toast_post_copy_error">Не удалось поделиться записью</string>
+
+    <!-- CategoresActivity-->
+
+    <!-- FavoritesActivity-->
+    <string name="favorites_empty_caption">В Избранном ничего нет.</string>
+    <string name="favorites_empty_message">Нажмите на значок ★ под записью, чтобы добавить ее в Избранное.</string>
+
+    <!-- IntroActivity-->
+    <string name="title_activity_intro" translatable="false">IntroActivity</string>
+    <string name="welcome_caption">Добро пожаловать!</string>
+    <string name="welcome_description">Теплофид - это яркие вдохновляющие записи, заботливо собранные из множества источников в одну ленту. Выберите любимые категории и наслаждайтесь качественным постами каждый день!</string>
+    <string name="welcome_get_started">НАЧАТЬ</string>
+    <string name="title_activity_donate" translatable="false">DonateActivity</string>
+
+    <!-- DonateActivity-->
+    <string name="donate_reason">Помимо того, что Ваша поддержка помогает развитию приложения, она навсегда убирает рекламу из Ленты и в будущем предоставит Вам доступ к новым платным функциям.\nМир.</string>
+    <string name="button_donate">ПОДДЕРЖАТЬ</string>
+    <string name="toast_donation_thanks">Благодарю за Вашу поддержку!</string>
+    <string name="category_authors_count">" источник/ источника/ источников"</string>
+</resources>

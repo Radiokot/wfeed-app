@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="280dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              tools:context="ua.com.radiokot.feed.DonateActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/support"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/donate_reason"
+        android:textColor="@color/secondary_text"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/buttonDonate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_donate"
+        android:gravity="center"
+        android:textColor="@color/material_deep_teal_500"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+</LinearLayout>

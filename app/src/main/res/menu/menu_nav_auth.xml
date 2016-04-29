@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:displayActivity="ua.com.radiokot.feed.TestActivity">
+    <item
+        android:id="@+id/action_auth_change"
+        android:title="@string/menu_auth_change"/>
+    <item
+        android:id="@+id/action_auth_out"
+        android:title="@string/menu_auth_out"/>
+</menu>

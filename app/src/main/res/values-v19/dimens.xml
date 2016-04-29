@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_height">80dp</dimen>
+    <dimen name="toolbar_top_padding">24dp</dimen>
+    <dimen name="list_bottom_padding">48dp</dimen>
+</resources>

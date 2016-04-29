@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ua.com.radiokot.feed"
+    android:installLocation="auto" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <application
+        android:name=".Spark"
+        android:allowBackup="true"
+        android:restoreAnyVersion="true"
+        android:backupAgent=".util.BackupAgent"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.Base" >
+
+        <meta-data android:name="com.google.android.backup.api_key"
+            android:value="AEdPqrEAAAAI0t4mKseu6tbWxIePvLLNaT_UyJ3dEGcq56QYDQ" />
+
+        <activity
+            android:name=".FeedActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".AuthActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_auth"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base.VK" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.radiokot.feed.FeedActivity" />
+        </activity>
+        <activity
+            android:name=".PhotoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
+            android:label="@string/title_activity_photo"
+            android:theme="@style/AppTheme.Base.Photo" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.radiokot.feed.FeedActivity" />
+        </activity>
+        <activity
+            android:name=".CategoriesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_categories"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.radiokot.feed.FeedActivity" />
+        </activity>
+        <activity
+            android:name=".FavoritesActivity"
+            android:label="@string/title_activity_favorites"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.radiokot.feed.FeedActivity" />
+        </activity>
+        <activity
+            android:name=".ShareActivity"
+            android:label="@string/title_activity_share"
+            android:theme="@style/AppTheme.Base.Floating" >
+        </activity>
+        <activity
+            android:name=".IntroActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DonateActivity"
+            android:label="@string/title_activity_donate"
+            android:theme="@style/AppTheme.Base.Floating"
+            android:parentActivityName=".FeedActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ua.com.radiokot.feed.FeedActivity" />
+        </activity>
+        <activity
+            android:name="com.mopub.mobileads.MoPubActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.mopub.mobileads.MraidActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity
+            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+    </application>
+
+</manifest>

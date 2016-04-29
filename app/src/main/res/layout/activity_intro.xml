@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80CBC4"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/toolbar_top_padding"
+    tools:context="ua.com.radiokot.feed.IntroActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="32dp">
+
+        <ImageView
+            android:id="@+id/imageLayerCircle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_layer_circle"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/imageLayerShadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_layer_shadow"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/imageLayerSmoke"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_layer_smoke"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/imageLayerCup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_layer_cup"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/welcome_caption"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/icons"
+                android:textSize="28sp" />
+
+            <com.uncopt.android.widget.text.justify.JustifiedTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/welcome_description"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/icons" />
+
+            <TextView
+                android:id="@+id/buttonIntroGo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@string/welcome_get_started"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/icons"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

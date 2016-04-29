@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuPhotoSave"
+        android:title="@string/menu_photo_save"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuPhotoSaveVK"
+        android:title="@string/menu_photo_save_vk"
+        app:showAsAction="never" />
+</menu>
