@@ -9,11 +9,10 @@ android {
         applicationId "ua.com.radiokot.feed"
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 7
-        versionName "1.3"
+        versionCode 8
+        versionName "1.4"
         multiDexEnabled false
     }
-
 }
 
 repositories {
@@ -23,9 +22,9 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile project(':mopub-sdk')
-    compile('com.mopub:mopub-sdk:4.4.0@aar') {
-        transitive = true
-    }
+    //compile('com.mopub:mopub-sdk:4.4.0@aar') {
+      //  transitive = true
+    //}
     //compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.hdodenhof:circleimageview:1.3.0'
     compile 'com.android.support:appcompat-v7:22.2.0'

@@ -1,7 +1,6 @@
 package ua.com.radiokot.feed;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
@@ -10,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
@@ -18,10 +16,6 @@ import com.flurry.android.FlurryAgent;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
-import com.mopub.nativeads.MoPubAdAdapter;
-import com.mopub.nativeads.MoPubNativeAdPositioning;
-import com.mopub.nativeads.MoPubStaticNativeAdRenderer;
-import com.mopub.nativeads.ViewBinder;
 
 import ua.com.radiokot.feed.adapters.FeedListAdapter;
 import ua.com.radiokot.feed.model.NavigationListItem;
@@ -44,8 +38,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     private boolean isReloading = false;
     // Адаптер ленты.
     public static FeedListAdapter feedListAdapter;
-    // Адаптер рекламы.
-    private MoPubAdAdapter mopubAdAdapter;
     // ID рекламы.
     private static final String MOPUB_UNIT_ID = "035a5d4d270e4bd492beee82d1cf0f0c";
     // Обработчик биллинга.
@@ -86,7 +78,7 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
         listFeed = (ObservableListView) findViewById(R.id.listFeed);
 
         feedListAdapter = new FeedListAdapter(FeedActivity.this, Feed.posts);
-        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.list_post_ad)
+        /*ViewBinder viewBinder = new ViewBinder.Builder(R.layout.list_post_ad)
                 .mainImageId(R.id.imageAdMain)
                 .iconImageId(R.id.imageAdIcon)
                 .titleId(R.id.textAdTitle)
@@ -102,9 +94,9 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
 
         // Set up the MoPubAdAdapter
         mopubAdAdapter = new MoPubAdAdapter(this, feedListAdapter, adPositioning);
-        mopubAdAdapter.registerAdRenderer(adRenderer);
+        mopubAdAdapter.registerAdRenderer(adRenderer);*/
 
-        listFeed.setAdapter(mopubAdAdapter);
+        listFeed.setAdapter(feedListAdapter);
         listFeed.setScrollViewCallbacks(this);
 
         // Повесим подгрузку ленты по мере скролла.
@@ -297,7 +289,7 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     {
         if (!billingProcessor.isPurchased(DonateActivity.SUPPORT_ITEM_ID))
         {
-            mopubAdAdapter.loadAds(MOPUB_UNIT_ID);
+            //mopubAdAdapter.loadAds(MOPUB_UNIT_ID);
             navigationDrawer.addItem(new NavigationListItem(Spark.resources.getDrawable(R.drawable.ic_heart_outline),
                     Spark.resources.getString(R.string.navigation_donate_caption), false,
                     new Runnable()
@@ -311,7 +303,7 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
         }
         else
         {
-            mopubAdAdapter.clearAds();
+            //mopubAdAdapter.clearAds();
         }
     }
 
@@ -384,7 +376,7 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     @Override
     public void onDestroy()
     {
-        mopubAdAdapter.destroy();
+        //mopubAdAdapter.destroy();
         if (billingProcessor != null)
             billingProcessor.release();
 
