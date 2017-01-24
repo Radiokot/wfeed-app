@@ -5,6 +5,8 @@ import android.widget.FrameLayout;
 
 import com.nineoldandroids.animation.ValueAnimator;
 
+import ua.com.radiokot.feed.Spark;
+
 /**
  * Методы для скрываемого скроллом тулбара.
  */
@@ -51,7 +53,8 @@ public class FloatingToolbar
 
 	public void moveToolbar(float marginFrom, float marginTo)
 	{
-		ValueAnimator animator = ValueAnimator.ofFloat(marginFrom, marginTo).setDuration(320);
+		ValueAnimator animator = ValueAnimator.ofFloat(marginFrom, marginTo).setDuration(
+				Spark.resources.getInteger(android.R.integer.config_mediumAnimTime));
 		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
 		{
 			@Override

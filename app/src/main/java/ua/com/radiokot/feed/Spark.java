@@ -55,13 +55,7 @@ public class Spark extends Application
 
     public static ImageLoader imageLoader = ImageLoader.getInstance();
 
-    public static DisplayImageOptions fadeDisplayOption = new DisplayImageOptions.Builder()
-            .displayer(new FadeInBitmapDisplayer(420, true, true, false))
-            .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
-            .bitmapConfig(Bitmap.Config.RGB_565)
-            .cacheInMemory(true)
-            .cacheOnDisk(true)
-            .build();
+    public static DisplayImageOptions fadeDisplayOption;
 
     public static DisplayImageOptions nofadeDisplayOption = new DisplayImageOptions.Builder()
             .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
@@ -96,6 +90,15 @@ public class Spark extends Application
                 .threadPriority(Process.THREAD_PRIORITY_FOREGROUND)
                 .discCacheSize(16777216) //кэша на 16 мб
                 .build();
+		fadeDisplayOption = new DisplayImageOptions.Builder()
+			.displayer(
+					new FadeInBitmapDisplayer(Spark.resources.getInteger(android.R.integer.config_shortAnimTime)
+							, true, true, false))
+			.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+			.bitmapConfig(Bitmap.Config.RGB_565)
+			.cacheInMemory(true)
+			.cacheOnDisk(true)
+			.build();
 
         ImageLoader.getInstance().init(config);
 

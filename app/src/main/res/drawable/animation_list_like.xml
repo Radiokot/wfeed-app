@@ -3,56 +3,56 @@
                 android:oneshot="true">
     <item
         android:drawable="@drawable/like_01"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_02"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_03"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_04"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_05"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_06"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_07"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_08"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_09"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_10"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_11"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_12"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_13"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_14"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_15"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_16"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_17"
-        android:duration="40" />
+        android:duration="70" />
     <item
         android:drawable="@drawable/like_01"
-        android:duration="40" />
+        android:duration="70" />
 </animation-list>

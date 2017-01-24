@@ -1,17 +1,25 @@
 package ua.com.radiokot.feed.adapters;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -160,21 +168,27 @@ public class FeedListAdapter extends ArrayAdapter<Post>
     };
 
     // Показать анимацию лайка поста.
-    public static void showLikeToast(Activity context)
+	public static void showLikeToast(Activity context)
     {
         LayoutInflater inflater = context.getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_like,
                 (ViewGroup) context.findViewById(R.id.toast_like_root));
-
-        ImageView animLike = (ImageView) layout.findViewById(R.id.animLike);
-
+        final ImageView heartImageView = (ImageView) layout.findViewById(R.id.animLike);
         Toast toast = new Toast(context);
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
+		heartImageView.setVisibility(View.INVISIBLE);
         toast.show();
 
-        ((AnimationDrawable) animLike.getBackground()).start();
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				heartImageView.setVisibility(View.VISIBLE);
+				Animation pulse = AnimationUtils.loadAnimation(Spark.context, R.anim.pulse);
+				heartImageView.startAnimation(pulse);
+			}
+		}, Spark.resources.getInteger(android.R.integer.config_mediumAnimTime));
     }
 
     public enum ExpandAction

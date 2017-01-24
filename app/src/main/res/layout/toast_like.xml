@@ -9,5 +9,6 @@
         android:id="@+id/animLike"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:background="@drawable/animation_list_like"/>
+		android:layout_margin="20dp"
+        android:src="@drawable/like_10"/>
 </LinearLayout>
