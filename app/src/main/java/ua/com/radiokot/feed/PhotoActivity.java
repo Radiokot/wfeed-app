@@ -1,12 +1,16 @@
 package ua.com.radiokot.feed;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.GestureDetector;
 import android.view.Menu;
@@ -33,12 +37,15 @@ import ua.com.radiokot.feed.util.TouchImageView;
 
 public class PhotoActivity extends BaseActivity
 {
+	private static final int REQUEST_MEMORY_PERMISSION = 21325;
+
 	private static Post post;
 	private static ViewPager pager;
 	private static GestureDetector gestureDetector;
 	private static PhotoPagerAdapter adapter;
 	private static TouchImageView[] imageViews;
 	private static View decorView;
+	private String photoUrlToSave;
 
 	//слушатель изменения страницы pager'a
 	private ViewPager.SimpleOnPageChangeListener pageChangeListener =
@@ -158,10 +165,50 @@ public class PhotoActivity extends BaseActivity
 				Social.savePhotoVk(post.photos.get(pager.getCurrentItem()), this);
 				return true;
 			case R.id.menuPhotoSave:
-				savePhoto(post.photos.get(pager.getCurrentItem()).getMaxUrl());
+				trySavePhoto(post.photos.get(pager.getCurrentItem()).getMaxUrl());
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	// Попытка сохранить фотографию с учетом разрешения на запись.
+	private void trySavePhoto(String photoUrl) {
+		if (ContextCompat.checkSelfPermission(this,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				!= PackageManager.PERMISSION_GRANTED) {
+
+			// Should we show an explanation?
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+				Spark.shortToast(Spark.resources.getString(R.string.toast_photo_save_permission));
+			} else {
+				// Le kostille.
+				photoUrlToSave = photoUrl;
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+						REQUEST_MEMORY_PERMISSION);
+			}
+		} else {
+			savePhoto(photoUrl);
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case REQUEST_MEMORY_PERMISSION: {
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					savePhoto(photoUrlToSave);
+				} else {
+					Spark.shortToast(Spark.resources.getString(R.string.toast_photo_save_permission));
+					Spark.shortToast(Spark.resources.getString(R.string.toast_photo_save_error));
+				}
+				return;
+			}
+		}
 	}
 
 	// Сохранение фотографии в файл из кэша UIL.

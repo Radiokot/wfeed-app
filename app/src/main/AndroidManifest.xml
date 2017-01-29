@@ -87,16 +87,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.com.radiokot.feed.FeedActivity" />
         </activity>
-        <activity
-            android:name="com.mopub.mobileads.MoPubActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.mopub.mobileads.MraidActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <activity
-            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
     </application>
 
 </manifest>
