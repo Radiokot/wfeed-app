@@ -37,9 +37,9 @@
     <string name="toast_post_copy_error">Unable to share the post</string>
     <string name="toast_rate_wish">High rating is the best motivation for the developer ;)</string>
     <string name="toast_vk_auth_fail">Unable to auth via VK</string>
-    <string name="variant_browser">Open in browser</string>
-    <string name="variant_text">Share text</string>
-    <string name="variant_url">Share link</string>
+    <string name="variant_browser">Open the link</string>
+    <string name="variant_text">Share the text</string>
+    <string name="variant_url">Share the link</string>
     <string name="variant_vk">Share on the VK</string>
     <string name="favorites_empty_caption">Favorites are empty.</string>
     <string name="favorites_empty_message">Click on the ★ icon under the post to add it to Favorites.</string>
@@ -52,4 +52,5 @@
     <string name="button_donate">SUPPORT</string>
     <string name="toast_donation_thanks">Thank you for your support!</string>
     <string name="category_authors_count">" sources/ sources/ sources"</string>
+	<string name="toast_photo_save_permission">You need to allow the access to the memory to save photos</string>
 </resources>

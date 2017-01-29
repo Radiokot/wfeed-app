@@ -48,12 +48,13 @@
     <string name="toast_photo_saved_vk">Фото сохранено в альбом\n\"Сохраненные фотографии\"</string>
     <string name="toast_photo_saved">Фото сохранено в галлерею</string>
     <string name="toast_photo_save_error">Не удалось сохранить фото</string>
+	<string name="toast_photo_save_permission">Для сохранения фотографий необходимо разрешить Теплофиду доступ к памяти</string>
 
     <!-- ShareActivity-->
     <string name="variant_vk">Поделиться на Стене</string>
     <string name="variant_text">Отправить текст</string>
     <string name="variant_url">Отправить ссылку</string>
-    <string name="variant_browser">Открыть в браузере</string>
+    <string name="variant_browser">Открыть ссылку</string>
     <string name="toast_post_copied">Запись опубликована</string>
     <string name="toast_post_copy_error">Не удалось поделиться записью</string>
 

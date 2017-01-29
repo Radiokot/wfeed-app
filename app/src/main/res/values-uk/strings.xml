@@ -37,7 +37,7 @@
     <string name="toast_post_copy_error">Не вдалося поділитися записом</string>
     <string name="toast_rate_wish">Позитивна оцінка краще за все мотивує розробника ;)</string>
     <string name="toast_vk_auth_fail">Помилка авторизації через ВК</string>
-    <string name="variant_browser">Відкрити у браузері</string>
+    <string name="variant_browser">Відкрити посилання</string>
     <string name="variant_url">Відправити посилання</string>
     <string name="variant_text">Відправити текст</string>
     <string name="variant_vk">Поділитися на Стіні</string>
@@ -52,4 +52,5 @@
     <string name="button_donate">ПІДТРИМАТИ</string>
     <string name="toast_donation_thanks">Дякую за Вашу підтримку!</string>
     <string name="category_authors_count">" джерело/ джерела/ джерел"</string>
+	<string name="toast_photo_save_permission">Для збереження фотографій необхідно дозволити Теплофіду доступ до пям\'яті</string>
 </resources>
