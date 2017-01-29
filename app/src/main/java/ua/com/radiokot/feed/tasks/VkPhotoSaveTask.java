@@ -28,8 +28,8 @@ public class VkPhotoSaveTask extends AsyncTask<Void, Void, Boolean>
 	{
 		String[] splitted = photo.VkAttId.split("_");
 
-		String url = String.format("https://api.vk.com/method/photos.copy?owner_id=%s&photo_id=%s&access_token=%s",
-				splitted[0], splitted[1], token);
+		String url = String.format("https://api.vk.com/method/photos.copy?v=5.62&owner_id=%s" +
+				"&photo_id=%s&access_token=%s", splitted[0], splitted[1], token);
 
 		try
 		{
