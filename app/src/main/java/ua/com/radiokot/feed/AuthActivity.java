@@ -1,6 +1,7 @@
 package ua.com.radiokot.feed;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -127,7 +128,7 @@ public class AuthActivity extends BaseActivity
     }
 
     // Запуск с передачей отклика.
-    public static void launch(Activity context, Runnable callback)
+    public static void launch(Context context, Runnable callback)
     {
         callbackAuthVK = callback;
         context.startActivity(new Intent(context, AuthActivity.class));

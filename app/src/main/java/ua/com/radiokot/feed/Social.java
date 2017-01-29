@@ -1,6 +1,7 @@
 package ua.com.radiokot.feed;
 
 import android.app.Activity;
+import android.content.Context;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,7 +29,7 @@ public class Social
             new VkPostLikeSwitchTask(post, button, tokenVk).execute();
         else
         {
-            authVk((BaseActivity) button.getContext(), new Runnable()
+            authVk(button.getContext(), new Runnable()
             {
                 @Override
                 public void run()
@@ -91,7 +92,7 @@ public class Social
     }
 
     // Авторизация в ВК.
-    public static void authVk(Activity context, Runnable callback)
+    public static void authVk(Context context, Runnable callback)
     {
         AuthActivity.launch(context, callback);
     }
