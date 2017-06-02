@@ -1,5 +1,7 @@
 package ua.com.radiokot.feed;
 
+import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 import android.widget.ImageButton;
 
@@ -10,6 +12,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import ua.com.radiokot.feed.adapters.FeedListAdapter;
 import ua.com.radiokot.feed.model.Attachment;
@@ -59,7 +62,11 @@ public class Feed
 		if (!nowUpdating)
 		{
 			feedUpdater = new FeedUpdateTask(adapter, clear);
-			feedUpdater.execute();
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+				feedUpdater.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+			} else {
+				feedUpdater.execute();
+			}
 		}
 	}
 
