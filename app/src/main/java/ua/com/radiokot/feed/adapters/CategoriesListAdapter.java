@@ -52,7 +52,7 @@ public class CategoriesListAdapter extends ArrayAdapter<Category>
         textAuthorsCount.setText(String.valueOf(category.authorsCount) +
                 Spark.getNumEnding(category.authorsCount,
                     Spark.resources.getString(R.string.category_authors_count).split("/")));
-		Spark.imageLoader.displayImage(category.thumb, imageThumb);
+		Spark.imageLoader.displayImage(category.thumb, imageThumb, Spark.fadeDisplayOption);
 
 		layoutCategory.setOnClickListener(new View.OnClickListener()
 		{
