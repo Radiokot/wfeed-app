@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -91,8 +92,11 @@ public class PhotoActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 
 		//скроем название и покажем кнопку назад в тулбаре
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
 		//получим DecorView и перерисуем интерфейс
 		decorView = getWindow().getDecorView();
@@ -112,10 +116,10 @@ public class PhotoActivity extends BaseActivity
 				@Override
 				public void onClick(View v)
 				{
-					if (PhotoActivity.isUIVisible())
-						PhotoActivity.hideSystemUI();
+					if (isUIVisible())
+						hideSystemUI();
 					else
-						PhotoActivity.showSystemUI();
+						showSystemUI();
 				}
 			});
 			//настроим отлавливание свайпа
@@ -284,13 +288,13 @@ public class PhotoActivity extends BaseActivity
 
 	// Виден ли интерфейс?
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static boolean isUIVisible()
-	{
-		return ((PhotoActivity) decorView.getContext()).getSupportActionBar().isShowing();
-	}
+	public boolean isUIVisible() {
+        ActionBar actionBar = getSupportActionBar();
+        return actionBar != null && actionBar.isShowing();
+    }
 
 	// Скрытие интерфейса
-	public static void hideSystemUI()
+	public void hideSystemUI()
 	{
 		if (Build.VERSION.SDK_INT >= 16)
 		{
@@ -302,11 +306,16 @@ public class PhotoActivity extends BaseActivity
 							| View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
 							| ((Build.VERSION.SDK_INT >= 19) ? View.SYSTEM_UI_FLAG_IMMERSIVE : 0)
 			);
-		} else ((PhotoActivity) decorView.getContext()).getSupportActionBar().hide();
+		} else {
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.hide();
+            }
+        }
 	}
 
 	//Показ интерфейса
-	public static void showSystemUI()
+	public void showSystemUI()
 	{
 		if (Build.VERSION.SDK_INT >= 16)
 		{
@@ -314,7 +323,12 @@ public class PhotoActivity extends BaseActivity
 					| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 					| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 			);
-		} else ((PhotoActivity) decorView.getContext()).getSupportActionBar().show();
+		} else {
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.show();
+            }
+        }
 	}
 
 	//Запуск с передачей поста
