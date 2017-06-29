@@ -41,11 +41,12 @@ public class PhotoActivity extends BaseActivity
 	private static final int REQUEST_MEMORY_PERMISSION = 21325;
 
 	private static Post post;
-	private static ViewPager pager;
-	private static GestureDetector gestureDetector;
-	private static PhotoPagerAdapter adapter;
-	private static TouchImageView[] imageViews;
-	private static View decorView;
+
+	private ViewPager pager;
+	private GestureDetector gestureDetector;
+	private PhotoPagerAdapter adapter;
+	private TouchImageView[] imageViews;
+    private View decorView;
 	private String photoUrlToSave;
 
 	//слушатель изменения страницы pager'a
