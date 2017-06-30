@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme.Base" >
 
         <meta-data android:name="com.google.android.backup.api_key"
-            android:value="AEdPqrEAAAAI0t4mKseu6tbWxIePvLLNaT_UyJ3dEGcq56QYDQ" />
+                   android:value="AEdPqrEAAAAI0t4mKseu6tbWxIePvLLNaT_UyJ3dEGcq56QYDQ" />
 
         <activity
             android:name=".FeedActivity"

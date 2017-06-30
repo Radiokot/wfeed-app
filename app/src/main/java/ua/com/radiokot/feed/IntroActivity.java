@@ -45,6 +45,10 @@ public class IntroActivity extends ActionBarActivity
 				startActivityForResult(new Intent(IntroActivity.this, CategoriesActivity.class), 1);
 			}
 		});
+
+        try {
+            ua.com.radiokot.feed.util.BackupAgent.requestRestore(this);
+        } catch (Exception e) {e.printStackTrace();}
 	}
 
 	private void animateLogo(final int duration)

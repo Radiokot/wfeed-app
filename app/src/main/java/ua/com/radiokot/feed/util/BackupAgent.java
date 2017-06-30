@@ -19,9 +19,10 @@ public class BackupAgent extends BackupAgentHelper
                 new FileBackupHelper(this, "../databases/" + Database.DATABASE_NAME);
         addHelper(Database.DATABASE_NAME, fileBackupHelper);
 
+        String preferencesKey = getPackageName() + "_preferences";
         SharedPreferencesBackupHelper preferencesBackupHelper =
-                new SharedPreferencesBackupHelper(this, getPackageName() + "_preferences");
-        addHelper("prefs", preferencesBackupHelper);
+                new SharedPreferencesBackupHelper(this, preferencesKey);
+        addHelper(preferencesKey, preferencesBackupHelper);
     }
 
     // Запрос бекапа.

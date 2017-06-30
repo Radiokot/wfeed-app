@@ -52,7 +52,7 @@ public class FeedUpdateTask extends AsyncTask<Void, Void, Void>
 			adapter.addServiceItem(new ServicePostItem.InfoItem().displayNoConnection());
 			return null;
 		}
-		catch (IOException | JSONException e)
+		catch (Exception e)
 		{
 			adapter.addServiceItem(new ServicePostItem.InfoItem().displayNoData());
 			return null;

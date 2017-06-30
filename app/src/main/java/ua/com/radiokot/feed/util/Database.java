@@ -132,5 +132,7 @@ public class Database extends SQLiteOpenHelper
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_FAVORITES, KEY_POST_ID + " = '" + id + "'", null);
 		db.close();
+
+        BackupAgent.requestBackup(Spark.context);
 	}
 }
