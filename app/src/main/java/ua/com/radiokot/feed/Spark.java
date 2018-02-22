@@ -144,6 +144,14 @@ public class Spark extends Application
         {
             return getJSON(url.replace("https://", "http://"));
         }
+        catch (IOException io) {
+            // In case of Cloudflare issues this will allow non-https bypass mode.
+            if (url.startsWith("https://")) {
+                return getJSON(url.replace("https://", "http://"));
+            } else {
+                throw io;
+            }
+        }
 
         // Делаем JSON из строки.
         json = new JSONObject(response);
