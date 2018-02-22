@@ -9,10 +9,14 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Process;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.flurry.android.FlurryAgent;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.security.ProviderInstaller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -32,11 +36,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLProtocolException;
+import javax.net.ssl.SSLSocketFactory;
 
 import ua.com.radiokot.feed.util.BackupAgent;
 import ua.com.radiokot.feed.util.Database;
 import ua.com.radiokot.feed.util.FadeInBitmapDisplayer;
+import ua.com.radiokot.feed.util.TLSSocketFactory;
 
 /*
     Коробочка с силами.
@@ -63,6 +70,8 @@ public class Spark extends Application
             .cacheInMemory(true)
             .cacheOnDisk(true)
             .build();
+
+    private static SSLSocketFactory sslSocketFactory;
 
     public void onCreate()
     {
@@ -110,6 +119,15 @@ public class Spark extends Application
         FlurryAgent.setLogLevel(Log.INFO);
         FlurryAgent.init(context, "99RZSRRQ77MS8QXNQ5QD");
         FlurryAgent.onStartSession(context);
+
+        // Modern TLS for bad devices.
+        if (areGooglePlayServicesAvailable()) {
+            try {
+                ProviderInstaller.installIfNeeded(this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // Получить ответ в JSON.
@@ -123,6 +141,15 @@ public class Spark extends Application
         {
             // Получаем поток.
             URLConnection conn = new URL(url).openConnection();
+
+            if (conn instanceof HttpsURLConnection) {
+                HttpsURLConnection httpsConn = (HttpsURLConnection) conn;
+                SSLSocketFactory socketFactory = getSslSocketFactory();
+                if (socketFactory != null) {
+                    httpsConn.setSSLSocketFactory(socketFactory);
+                }
+            }
+
             conn.setConnectTimeout(8000);
             conn.setReadTimeout(8000);
             conn.setRequestProperty("User-Agent", "WFeed Android/" +
@@ -157,6 +184,26 @@ public class Spark extends Application
         json = new JSONObject(response);
         is.close();
         return json;
+    }
+
+    private static @Nullable SSLSocketFactory getSslSocketFactory() {
+        if (sslSocketFactory != null) {
+            return sslSocketFactory;
+        } else {
+            try {
+                sslSocketFactory = new TLSSocketFactory();
+                return sslSocketFactory;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    private boolean areGooglePlayServicesAvailable() {
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(this);
+        return resultCode == ConnectionResult.SUCCESS;
     }
 
     // Короткий Toast.
