@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -22,10 +23,27 @@ public class IntroActivity extends ActionBarActivity
 		if (!Spark.isFirstLaunch)
 		{
 			startActivity(new Intent(this, FeedActivity.class));
+			super.onCreate(savedInstanceState);
 			finish();
+			return;
 		}
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intro);
+
+		final View logoLayout = findViewById(R.id.logoLayout);
+		final View rootView = findViewById(R.id.rootView);
+
+		rootView.post(new Runnable() {
+			@Override
+			public void run() {
+				int height = rootView.getMeasuredHeight();
+				ViewGroup.LayoutParams layoutParams = logoLayout.getLayoutParams();
+				layoutParams.height = (int) (height * 3f / 12)
+						+ getResources().getDimensionPixelSize(R.dimen.double_margin);
+				logoLayout.setLayoutParams(layoutParams);
+			}
+		});
 
 		// Анимировать логотип.
 		new Handler().postDelayed(new Runnable()

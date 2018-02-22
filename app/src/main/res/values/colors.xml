@@ -10,4 +10,5 @@
     <color name="post_light">#FFFFFF</color>
     <color name="post_dark">#F6F6F6</color>
     <color name="divider">#B6B6B6</color>
+    <color name="intro_background">#80CBC4</color>
 </resources>

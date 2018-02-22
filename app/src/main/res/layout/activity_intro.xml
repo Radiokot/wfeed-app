@@ -1,91 +1,94 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80CBC4"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/toolbar_top_padding"
+    android:background="@color/intro_background"
+    android:overScrollMode="never"
+    android:requiresFadingEdge="vertical"
+    android:scrollbars="none"
+    android:paddingTop="24dp"
+    android:clipToPadding="false"
     tools:context="ua.com.radiokot.feed.IntroActivity">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="32dp">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/imageLayerCircle"
+        <FrameLayout
+            android:id="@+id/logoLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_layer_circle"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:id="@+id/imageLayerShadow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_layer_shadow"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:id="@+id/imageLayerSmoke"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_layer_smoke"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:id="@+id/imageLayerCup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_layer_cup"
-            android:visibility="invisible" />
-
-    </FrameLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:layout_weight="2">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:paddingBottom="16dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/imageLayerCircle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/welcome_caption"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/icons"
-                android:textSize="28sp" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_layer_circle"
+                android:visibility="invisible" />
 
-            <com.uncopt.android.widget.text.justify.JustifiedTextView
+            <ImageView
+                android:id="@+id/imageLayerShadow"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/welcome_description"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/icons" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_layer_shadow"
+                android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/buttonIntroGo"
+            <ImageView
+                android:id="@+id/imageLayerSmoke"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:text="@string/welcome_get_started"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/icons"
-                android:textSize="24sp" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_layer_smoke"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/imageLayerCup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_layer_cup"
+                android:visibility="invisible" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:text="@string/welcome_caption"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/icons" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:text="@string/welcome_description"
+            android:textColor="@color/icons"
+            android:textSize="16sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonIntroGo"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/welcome_get_started"
+            android:textColor="@color/icons" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/double_margin" />
+    </LinearLayout>
+</ScrollView>

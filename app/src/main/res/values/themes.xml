@@ -15,6 +15,10 @@
         <item name="actionBarSize">56dp</item>
     </style>
 
+    <style name="AppTheme.Intro" parent="AppTheme.Base">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
     <style name="AppTheme.Base.VK" parent="AppTheme.Base">
         <item name="colorPrimary">#6182aa</item>
         <item name="colorPrimaryDark">#ff486687</item>
