@@ -1,14 +1,14 @@
 package ua.com.radiokot.feed;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 
 
-public class DonateActivity extends Activity
+public class DonateActivity extends AppCompatActivity
 {
 	public static final String SUPPORT_ITEM_ID = "feed_support";
 	private static BillingProcessor billingProcessor;

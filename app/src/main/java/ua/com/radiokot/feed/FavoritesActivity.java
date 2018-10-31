@@ -53,7 +53,7 @@ public class FavoritesActivity extends BaseActivity implements ObservableScrollV
 		findViewById(R.id.textEmpty).setVisibility(
 				favoritePosts.isEmpty() ? View.VISIBLE : View.INVISIBLE);
 
-		Drawable arrow = Spark.resources.getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+		Drawable arrow = Spark.resources.getDrawable(R.drawable.ic_arrow_back);
 		arrow.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
 		toolbar.setNavigationIcon(arrow);
 	}

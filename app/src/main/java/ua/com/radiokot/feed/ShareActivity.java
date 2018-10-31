@@ -3,8 +3,8 @@ package ua.com.radiokot.feed;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import ua.com.radiokot.feed.model.NavigationListItem;
 import ua.com.radiokot.feed.model.Post;
 
 
-public class ShareActivity extends ActionBarActivity
+public class ShareActivity extends AppCompatActivity
 {
 	private static Post sharingPost;
 

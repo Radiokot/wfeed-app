@@ -3,7 +3,7 @@ package ua.com.radiokot.feed;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
@@ -15,7 +15,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 
-public class IntroActivity extends ActionBarActivity
+public class IntroActivity extends AppCompatActivity
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
