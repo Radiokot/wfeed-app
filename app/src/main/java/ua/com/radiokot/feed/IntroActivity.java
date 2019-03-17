@@ -1,6 +1,7 @@
 package ua.com.radiokot.feed;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -67,6 +68,15 @@ public class IntroActivity extends AppCompatActivity
         try {
             ua.com.radiokot.feed.util.BackupAgent.requestRestore(this);
         } catch (Exception e) {e.printStackTrace();}
+
+        findViewById(R.id.privacy_policy_text_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://feed.radiokot.com.ua/privacy"))
+                );
+            }
+        });
 	}
 
 	private void animateLogo(final int duration)

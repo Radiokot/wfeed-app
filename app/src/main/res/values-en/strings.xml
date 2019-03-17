@@ -53,4 +53,5 @@
     <string name="toast_donation_thanks">Thank you for your support!</string>
     <string name="category_authors_count">" sources/ sources/ sources"</string>
 	<string name="toast_photo_save_permission">You need to allow the access to the memory to save photos</string>
+    <string name="privacy_policy"><u>Privacy policy</u></string>
 </resources>

@@ -87,6 +87,16 @@
             android:text="@string/welcome_get_started"
             android:textColor="@color/icons" />
 
+        <TextView
+            android:id="@+id/privacy_policy_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+
+            android:textColor="@color/icons"
+            android:layout_marginTop="8dp"
+            android:text="@string/privacy_policy"/>
+
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/double_margin" />

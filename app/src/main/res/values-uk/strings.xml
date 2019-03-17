@@ -53,4 +53,5 @@
     <string name="toast_donation_thanks">Дякую за Вашу підтримку!</string>
     <string name="category_authors_count">" джерело/ джерела/ джерел"</string>
 	<string name="toast_photo_save_permission">Для збереження фотографій необхідно дозволити Теплофіду доступ до пям\'яті</string>
+    <string name="privacy_policy"><u>Політика конфіденційності</u></string>
 </resources>

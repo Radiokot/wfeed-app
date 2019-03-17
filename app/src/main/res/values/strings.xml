@@ -70,6 +70,7 @@
     <string name="welcome_description">Теплофид - это яркие вдохновляющие записи, заботливо собранные из множества источников в одну ленту. Выберите любимые категории и наслаждайтесь качественным постами каждый день!</string>
     <string name="welcome_get_started">НАЧАТЬ</string>
     <string name="title_activity_donate" translatable="false">DonateActivity</string>
+    <string name="privacy_policy"><u>Политика конфиденциальности</u></string>
 
     <!-- DonateActivity-->
     <string name="donate_reason">Помимо того, что Ваша поддержка помогает развитию приложения, она навсегда убирает рекламу из Ленты и в будущем предоставит Вам доступ к новым платным функциям.\nМир.</string>
