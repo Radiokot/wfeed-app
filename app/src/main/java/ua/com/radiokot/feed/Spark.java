@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
@@ -52,6 +53,8 @@ import javax.net.ssl.SSLProtocolException;
 import javax.net.ssl.SSLSocketFactory;
 
 import okhttp3.Dns;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -90,6 +93,9 @@ public class Spark extends Application
     private static SSLSocketFactory sslSocketFactory;
 
     private static SimpleResolver imageLoaderDnsResolver = null;
+
+    private static final String VK_IMAGE_REDIRECT_URL_PART = "vkpp.radiokot.com.ua/r";
+    private static String actualVkImageServer = null;
 
     public void onCreate()
     {
@@ -130,7 +136,11 @@ public class Spark extends Application
                         throw new UnknownHostException(s);
                     }
                     lookup.setResolver(imageLoaderDnsResolver);
+                    lookup.run();
                     Record[] records = lookup.run();
+                    if (records == null) {
+                        throw new UnknownHostException(s);
+                    }
                     Set<String> known = new HashSet<>(records.length);
                     List<InetAddress> res = new ArrayList<>(records.length);
                     for (Record record:records) {
@@ -150,6 +160,24 @@ public class Spark extends Application
         final OkHttpClient imageLoaderHttpClient = new OkHttpClient.Builder()
                 .followRedirects(true)
                 .dns(imageLoaderClientDns)
+                .addNetworkInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request request = chain.request();
+                        Response response = chain.proceed(request);
+                        if (response.code() == HttpURLConnection.HTTP_MOVED_PERM
+                                && request.url().toString().contains(VK_IMAGE_REDIRECT_URL_PART)) {
+                            String locationHeader = response.header("Location");
+                            if (locationHeader != null) {
+                                HttpUrl parsedLocationUrl = HttpUrl.parse(locationHeader);
+                                if (parsedLocationUrl != null) {
+                                    actualVkImageServer = parsedLocationUrl.host();
+                                }
+                            }
+                        }
+                        return response;
+                    }
+                })
                 .build();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
                 .defaultDisplayImageOptions(fadeDisplayOption)
@@ -159,6 +187,9 @@ public class Spark extends Application
                 .imageDownloader(new BaseImageDownloader(this, 8000, 8000) {
                     @Override
                     protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
+                        if (imageUri.contains(VK_IMAGE_REDIRECT_URL_PART) && actualVkImageServer != null) {
+                            imageUri = imageUri.replace(VK_IMAGE_REDIRECT_URL_PART, actualVkImageServer);
+                        }
                         Request request = new Request.Builder()
                                 .get()
                                 .url(imageUri)
