@@ -9,7 +9,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Process;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,41 +23,23 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xbill.DNS.Lookup;
-import org.xbill.DNS.Record;
-import org.xbill.DNS.SimpleResolver;
-import org.xbill.DNS.TextParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLProtocolException;
 import javax.net.ssl.SSLSocketFactory;
 
-import okhttp3.Dns;
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 import ua.com.radiokot.feed.util.BackupAgent;
 import ua.com.radiokot.feed.util.Database;
 import ua.com.radiokot.feed.util.FadeInBitmapDisplayer;
@@ -92,11 +73,6 @@ public class Spark extends Application
 
     private static SSLSocketFactory sslSocketFactory;
 
-    private static SimpleResolver imageLoaderDnsResolver = null;
-
-    private static final String VK_IMAGE_REDIRECT_URL_PART = "vkpp.radiokot.com.ua/r";
-    private static String actualVkImageServer = null;
-
     public void onCreate()
     {
         super.onCreate();
@@ -117,92 +93,11 @@ public class Spark extends Application
         database = new Database(context);
 
         // Проинициализируем ImageLoader.
-        try {
-            imageLoaderDnsResolver = new SimpleResolver("1.1.1.1");
-        } catch (UnknownHostException e) {
-            Log.e("Spark", "Omg, DNS server IP is an unknown host");
-        }
-        Dns imageLoaderClientDns = Dns.SYSTEM;
-        if (imageLoaderDnsResolver != null) {
-            imageLoaderDnsResolver.setTimeout(8);
-            imageLoaderClientDns = new Dns() {
-                @NonNull
-                @Override
-                public List<InetAddress> lookup(@NonNull String s) throws UnknownHostException {
-                    Lookup lookup;
-                    try {
-                        lookup = new Lookup(s, org.xbill.DNS.Type.A);
-                    } catch (TextParseException e) {
-                        throw new UnknownHostException(s);
-                    }
-                    lookup.setResolver(imageLoaderDnsResolver);
-                    lookup.run();
-                    Record[] records = lookup.run();
-                    if (records == null) {
-                        throw new UnknownHostException(s);
-                    }
-                    Set<String> known = new HashSet<>(records.length);
-                    List<InetAddress> res = new ArrayList<>(records.length);
-                    for (Record record:records) {
-                        String ip = record.rdataToString();
-                        if (!known.contains(ip)) {
-                            known.add(ip);
-                            res.add(InetAddress.getByName(ip));
-                        }
-                    }
-                    if (res.size() == 0) {
-                        throw new UnknownHostException(s);
-                    }
-                    return res;
-                }
-            };
-        }
-        final OkHttpClient imageLoaderHttpClient = new OkHttpClient.Builder()
-                .followRedirects(true)
-                .dns(imageLoaderClientDns)
-                .addNetworkInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request request = chain.request();
-                        Response response = chain.proceed(request);
-                        if (response.code() == HttpURLConnection.HTTP_MOVED_PERM
-                                && request.url().toString().contains(VK_IMAGE_REDIRECT_URL_PART)) {
-                            String locationHeader = response.header("Location");
-                            if (locationHeader != null) {
-                                HttpUrl parsedLocationUrl = HttpUrl.parse(locationHeader);
-                                if (parsedLocationUrl != null) {
-                                    actualVkImageServer = parsedLocationUrl.host();
-                                }
-                            }
-                        }
-                        return response;
-                    }
-                })
-                .build();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
                 .defaultDisplayImageOptions(fadeDisplayOption)
                 .denyCacheImageMultipleSizesInMemory()
                 .threadPriority(Process.THREAD_PRIORITY_FOREGROUND)
                 .discCacheSize(16777216) //кэша на 16 мб
-                .imageDownloader(new BaseImageDownloader(this, 8000, 8000) {
-                    @Override
-                    protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
-                        if (imageUri.contains(VK_IMAGE_REDIRECT_URL_PART) && actualVkImageServer != null) {
-                            imageUri = imageUri.replace(VK_IMAGE_REDIRECT_URL_PART, actualVkImageServer);
-                        }
-                        Request request = new Request.Builder()
-                                .get()
-                                .url(imageUri)
-                                .build();
-                        Response response = imageLoaderHttpClient.newCall(request).execute();
-                        ResponseBody body = response.body();
-                        if (response.isSuccessful() && body != null) {
-                            return body.byteStream();
-                        } else {
-                            throw new IOException("Response body is null");
-                        }
-                    }
-                })
                 .build();
 		fadeDisplayOption = new DisplayImageOptions.Builder()
 			.displayer(
