@@ -27,7 +27,7 @@ public class VkPostCopyTask extends AsyncTask<Void, Void, Boolean>
 	protected Boolean doInBackground(Void... params)
 	{
 		String url = String.format("https://api.vk.com/method/wall.repost?object=wall-%s" +
-						"&message=%s&v=5.62&access_token=%s",
+						"&message=%s&v=5.126&access_token=%s",
 				post.author.apiId + "_" + post.apiId, "", token);
 
 		try

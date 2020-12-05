@@ -37,7 +37,7 @@ public class VkUserInitTask extends AsyncTask<Void, Void, JSONObject>
 	@Override
 	protected JSONObject doInBackground(Void... params)
 	{
-		String url = String.format("https://api.vk.com/method/execute.initUser?v=5.2&lang=%s&access_token=%s",
+		String url = String.format("https://api.vk.com/method/execute.initUser?v=5.126&lang=%s&access_token=%s",
 				Spark.resources.getString(R.string.locale), token);
 
 		try

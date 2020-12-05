@@ -51,7 +51,7 @@ public class AuthActivity extends BaseActivity
 
         String url = "https://oauth.vk.com/authorize?client_id=4712158&scope=offline,wall,photos" +
                 "&redirect_uri=https://oauth.vk.com/blank.html" +
-                "&display=mobile&v=5.29&response_type=token";
+                "&display=mobile&v=5.126&response_type=token";
         webviewAuth.loadUrl(url);
     }
 

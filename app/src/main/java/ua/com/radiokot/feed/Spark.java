@@ -133,6 +133,10 @@ public class Spark extends Application
     // Получить ответ в JSON.
     public static JSONObject getJSON(String url) throws IOException, JSONException
     {
+        if (BuildConfig.DEBUG) {
+            Log.i("Spark.getJSON", url);
+        }
+
         String response;
         JSONObject json;
         InputStream is;

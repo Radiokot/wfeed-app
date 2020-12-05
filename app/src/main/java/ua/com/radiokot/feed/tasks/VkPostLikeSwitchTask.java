@@ -34,7 +34,7 @@ public class VkPostLikeSwitchTask extends AsyncTask<Void, Void, Boolean>
 	protected Boolean doInBackground(Void... params)
 	{
 		String url = String.format("https://api.vk.com/method/execute.switchLike?" +
-						"prev_state=%s&owner_id=-%s&item_id=%s&v=5.2&access_token=%s",
+						"prev_state=%s&owner_id=-%s&item_id=%s&v=5.126&access_token=%s",
 				(post.isLiked ? 1 : 0), post.author.apiId, post.apiId, token);
 
 		try
