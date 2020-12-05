@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -201,7 +202,7 @@ public class PhotoActivity extends BaseActivity
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode,
-										   String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
 		switch (requestCode) {
 			case REQUEST_MEMORY_PERMISSION: {
 				if (grantResults.length > 0
@@ -249,7 +250,11 @@ public class PhotoActivity extends BaseActivity
 		File feedDir = new File(storagePath + "/WFeed");
 		feedDir.mkdirs();
 
-		String outImageFileName = photoUrl.substring(photoUrl.lastIndexOf('/') + 1, photoUrl.length());
+		String extension = MimeTypeMap.getFileExtensionFromUrl(photoUrl);
+		if (extension == null) {
+		    extension = "jpg";
+        }
+		String outImageFileName = "" + System.currentTimeMillis() + "." + extension;
 		File outImage = new File(feedDir, outImageFileName);
 
 		if (outImage.exists())
