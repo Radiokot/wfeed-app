@@ -1,16 +1,10 @@
 package ua.com.radiokot.feed.tasks;
 
-import android.app.Activity;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.core.content.ContextCompat;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import org.json.JSONObject;
 

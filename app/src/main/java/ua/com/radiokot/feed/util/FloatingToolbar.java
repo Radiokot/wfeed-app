@@ -1,6 +1,6 @@
 package ua.com.radiokot.feed.util;
 
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.FrameLayout;
 
 import com.nineoldandroids.animation.ValueAnimator;

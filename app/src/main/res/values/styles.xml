@@ -1,9 +1,0 @@
-<resources>
-
-    <style name="ShadeActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/actionbar_shade</item>
-        <!--@drawable/actionbar_shade-->
-        <item name="background">@drawable/actionbar_shade</item>
-    </style>
-
-</resources>

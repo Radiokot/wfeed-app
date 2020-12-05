@@ -6,7 +6,7 @@
                 android:background="@color/background_material_light"
                 tools:displayActivity="ua.com.radiokot.feed.CategoriesActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/toolbar_height"
@@ -36,7 +36,7 @@
             android:layout_gravity="right"
             android:visibility="invisible"/>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <ListView
         android:layout_width="match_parent"

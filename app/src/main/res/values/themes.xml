@@ -30,8 +30,6 @@
         <item name="colorPrimaryDark">@android:color/black</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="windowActionBarOverlay">true</item>
-        <item name="actionBarStyle">@style/ShadeActionBar</item>
-        <item name="actionBarSize">@dimen/abc_action_bar_default_height_material</item>
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
     </style>

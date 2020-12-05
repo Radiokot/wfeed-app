@@ -9,7 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Process;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
