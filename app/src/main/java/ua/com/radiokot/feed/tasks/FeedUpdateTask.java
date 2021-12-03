@@ -54,6 +54,7 @@ public class FeedUpdateTask extends AsyncTask<Void, Void, Void>
 		}
 		catch (Exception e)
 		{
+			e.printStackTrace();
 			adapter.addServiceItem(new ServicePostItem.InfoItem().displayNoData());
 			return null;
 		}
