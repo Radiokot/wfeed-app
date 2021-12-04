@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.flurry.android.FlurryAgent;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
@@ -125,20 +124,6 @@ public class CategoriesActivity extends BaseActivity
             setResult(RESULT_OK);
             updateSelectedCategories();
         }
-    }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-        FlurryAgent.onStartSession(this);
-    }
-
-    @Override
-    public void onStop()
-    {
-        super.onStop();
-        FlurryAgent.onEndSession(this);
     }
 
     @Override

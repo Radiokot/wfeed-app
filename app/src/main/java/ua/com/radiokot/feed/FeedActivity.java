@@ -3,16 +3,16 @@ package ua.com.radiokot.feed;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.widget.PopupMenu;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.widget.PopupMenu;
+
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
-import com.flurry.android.FlurryAgent;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -154,7 +154,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
                     public void run()
                     {
                         Spark.longToast(Spark.resources.getString(R.string.toast_rate_wish));
-                        FlurryAgent.logEvent("UserRatedApp");
                         String appPackageName = getPackageName();
                         try
                         {
@@ -358,17 +357,9 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     }
 
     @Override
-    public void onStart()
-    {
-        super.onStart();
-        FlurryAgent.onStartSession(this);
-    }
-
-    @Override
     public void onStop()
     {
         super.onStop();
-        FlurryAgent.onEndSession(this);
         Spark.writePrefs();
     }
 
@@ -376,7 +367,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     @Override
     public void onDestroy()
     {
-        //mopubAdAdapter.destroy();
         if (billingProcessor != null)
             billingProcessor.release();
 
