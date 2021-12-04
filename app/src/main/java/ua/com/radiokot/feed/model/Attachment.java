@@ -5,21 +5,16 @@ import org.json.JSONObject;
 /**
  * Вложение из поста.
  */
-public class Attachment
+public class Attachment implements Comparable<Attachment>
 {
-	public enum Type
-	{
-		PHOTO, VIDEO
-	}
-
-	public Type type;
 	public String id, VkAttId;
+	private Integer i;
 
-	public Attachment(String id, Type type)
+	Attachment(String id, int i)
 	{
 		//определим тип
-		this.type = type;
 		this.id = id;
+		this.i = i;
 	}
 
 	public static Attachment create(JSONObject json)
@@ -28,9 +23,12 @@ public class Attachment
 
 		if (type.equals("photo"))
 			return new PhotoAttachment(json);
-		else if (type.equals("video"))
-			return new VideoAttachment(json);
 		else
 			return null;
+	}
+
+	@Override
+	public int compareTo(Attachment a) {
+		return this.i.compareTo(a.i);
 	}
 }

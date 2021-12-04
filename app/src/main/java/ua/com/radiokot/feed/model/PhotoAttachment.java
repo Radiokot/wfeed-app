@@ -13,7 +13,7 @@ public class PhotoAttachment extends Attachment
 
 	public PhotoAttachment(JSONObject json)
 	{
-		super(json.optString("id"), Type.PHOTO);
+		super(json.optString("id"), json.optInt("i", 0));
 
 		this.height = json.optInt("photoHeight");
 		this.width = json.optInt("photoWidth");

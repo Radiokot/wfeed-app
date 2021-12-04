@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import ua.com.radiokot.feed.Feed;
@@ -22,7 +23,6 @@ public class Post
 	public int authorId, date;
 	public Author author;
 	public ArrayList<PhotoAttachment> photos;
-	public ArrayList<VideoAttachment> videos;
 	public transient boolean isExpanded = false, isLiked = false, isFavorite = false; //для лайка, звезды и т.п.
 	public Type displayType = Type.POST;
 
@@ -53,13 +53,13 @@ public class Post
 
 		//разделим вложения на фото и видео
 		photos = new ArrayList<>();
-		videos = new ArrayList<>();
-		for (Attachment a : Feed.atts.get(this.id))
-		{
-			if (a.type == Attachment.Type.PHOTO)
-				photos.add((PhotoAttachment) a);
-			else if (a.type == Attachment.Type.VIDEO)
-				videos.add((VideoAttachment) a);
+		ArrayList<Attachment> feedAttachments = Feed.atts.get(this.id);
+		if (feedAttachments != null) {
+			for (Attachment a : feedAttachments) {
+				if (a instanceof PhotoAttachment)
+					photos.add((PhotoAttachment) a);
+			}
+			Collections.sort(photos);
 		}
 
 		this.info = makeInfoString(this.date, this.author.siteName);
