@@ -10,8 +10,8 @@ android {
         applicationId "ua.com.radiokot.feed"
         minSdkVersion 14
         targetSdkVersion 30
-        versionCode 17
-        versionName "1.4.9"
+        versionCode 19
+        versionName "1.4.10"
         multiDexEnabled false
     }
 
