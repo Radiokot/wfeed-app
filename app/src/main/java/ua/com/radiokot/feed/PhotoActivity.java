@@ -1,7 +1,6 @@
 package ua.com.radiokot.feed;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,10 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.ActionBar;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +17,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
@@ -179,14 +179,15 @@ public class PhotoActivity extends BaseActivity
 
 	// Попытка сохранить фотографию с учетом разрешения на запись.
 	private void trySavePhoto(String photoUrl) {
-		if (ContextCompat.checkSelfPermission(this,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				!= PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q
+                && ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
 
 			// Should we show an explanation?
 			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
 					Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
 				Spark.shortToast(Spark.resources.getString(R.string.toast_photo_save_permission));
 			} else {
 				// Le kostille.
@@ -203,6 +204,7 @@ public class PhotoActivity extends BaseActivity
 	@Override
 	public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		switch (requestCode) {
 			case REQUEST_MEMORY_PERMISSION: {
 				if (grantResults.length > 0
@@ -257,10 +259,14 @@ public class PhotoActivity extends BaseActivity
 		String outImageFileName = "" + System.currentTimeMillis() + "." + extension;
 		File outImage = new File(feedDir, outImageFileName);
 
-		if (outImage.exists())
-			outImage.delete();
 		try
 		{
+            if (outImage.exists()) {
+                if (!outImage.canWrite() || !outImage.delete()) {
+                    throw new IllegalStateException("Failed to delete an existing file");
+                }
+            }
+
 			InputStream inputStream = new FileInputStream(cacheImage);
 			OutputStream outputStream = new FileOutputStream(outImage);
 
@@ -293,7 +299,6 @@ public class PhotoActivity extends BaseActivity
 	}
 
 	// Виден ли интерфейс?
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public boolean isUIVisible() {
         ActionBar actionBar = getSupportActionBar();
         return actionBar != null && actionBar.isShowing();
