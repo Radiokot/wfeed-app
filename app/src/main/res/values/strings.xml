@@ -46,7 +46,7 @@
     <string name="menu_photo_save">Сохранить</string>
     <string name="menu_photo_save_vk">Сохранить в ВК</string>
     <string name="toast_photo_saved_vk">Фото сохранено в альбом\n\"Сохраненные фотографии\"</string>
-    <string name="toast_photo_saved">Фото сохранено в галлерею</string>
+    <string name="toast_photo_saved">Фото сохранено в галерею</string>
     <string name="toast_photo_save_error">Не удалось сохранить фото</string>
 	<string name="toast_photo_save_permission">Для сохранения фотографий необходимо разрешить Теплофиду доступ к памяти</string>
 
