@@ -1,6 +1,5 @@
 package ua.com.radiokot.feed;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -9,11 +8,12 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Process;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.flurry.android.FlurryAgent;
+import androidx.annotation.Nullable;
+import androidx.multidex.MultiDexApplication;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.security.ProviderInstaller;
@@ -49,7 +49,7 @@ import ua.com.radiokot.feed.util.TLSSocketFactory;
     Коробочка с силами.
 */
 
-public class Spark extends Application
+public class Spark extends MultiDexApplication
 {
     public static Context context;
     public static PackageInfo packageInfo;
@@ -113,12 +113,6 @@ public class Spark extends Application
 
         // Читаем настройки.
         readPrefs();
-
-        // Включаем Flurry.
-        FlurryAgent.setLogEnabled(true);
-        FlurryAgent.setLogLevel(Log.INFO);
-        FlurryAgent.init(context, "99RZSRRQ77MS8QXNQ5QD");
-        FlurryAgent.onStartSession(context);
 
         // Modern TLS for bad devices.
         if (areGooglePlayServicesAvailable()) {

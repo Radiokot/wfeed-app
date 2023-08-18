@@ -11,7 +11,6 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.flurry.android.FlurryAgent;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.regex.Matcher;
@@ -109,7 +108,6 @@ public class AuthActivity extends BaseActivity
     {
         if (token != null)
         {
-            FlurryAgent.logEvent("UserAuthorized");
             Social.onNewTokenVk(token);
 
             // Раз пользователь новый, почистим список лайков.
@@ -142,19 +140,5 @@ public class AuthActivity extends BaseActivity
         setResult(Activity.RESULT_OK, new Intent().putExtra("token", token));
 
         super.finish();
-    }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-        FlurryAgent.onStartSession(this);
-    }
-
-    @Override
-    public void onStop()
-    {
-        super.onStop();
-        FlurryAgent.onEndSession(this);
     }
 }
