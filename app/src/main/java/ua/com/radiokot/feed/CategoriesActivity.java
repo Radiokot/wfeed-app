@@ -53,10 +53,12 @@ public class CategoriesActivity extends BaseActivity
             @Override
             public void onClick(View v)
             {
+                updateSelectedCategoriesIfNeeded();
+
                 if (needUpdateFeed)
                     FeedActivity.updateFeed(true);
 
-                onBackPressed();
+                finish();
             }
         });
 
@@ -110,6 +112,12 @@ public class CategoriesActivity extends BaseActivity
     @Override
     public void onBackPressed()
     {
+        updateSelectedCategoriesIfNeeded();
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.fade_out);
+    }
+
+    private void updateSelectedCategoriesIfNeeded() {
         // Если достаточно категорий для сохранения, то сохраним.
         if (buttonConfirm.isShown())
         {

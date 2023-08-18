@@ -12,7 +12,9 @@ import android.widget.FrameLayout;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -307,9 +309,8 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     }
 
     @Override
-    public void onProductPurchased(String productId, TransactionDetails details)
-    {
-        if (productId == DonateActivity.SUPPORT_ITEM_ID)
+    public void onProductPurchased(@NonNull String productId, @Nullable PurchaseInfo details) {
+        if (productId.equals(DonateActivity.SUPPORT_ITEM_ID))
         {
             Spark.shortToast(Spark.resources.getString(R.string.toast_donation_thanks));
             reload();
@@ -327,13 +328,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     {
         if (i == 102)
             billingProcessor.purchase(null, DonateActivity.SUPPORT_ITEM_ID);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (!billingProcessor.handleActivityResult(requestCode, resultCode, data))
-            super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
