@@ -159,12 +159,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
                     }
                 }));
 
-        navigationDrawer.addItem(new NavigationListItem(Spark.resources.getDrawable(R.drawable.ic_comment_plus_outline),
-                Spark.resources.getString(R.string.navigation_suggest_caption), false,
-                new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://feed.radiokot.com.ua/suggest?hl="
-                                + Spark.resources.getString(R.string.locale)))));
-
         // Добавим клик на имя.
         navigationDrawer.textNavUserName.setOnClickListener(new View.OnClickListener()
         {
