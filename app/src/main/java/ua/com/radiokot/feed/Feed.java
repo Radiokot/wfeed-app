@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ThreadPoolExecutor;
 
 import ua.com.radiokot.feed.adapters.FeedListAdapter;
 import ua.com.radiokot.feed.model.Attachment;
@@ -26,8 +25,6 @@ import ua.com.radiokot.feed.tasks.FeedUpdateTask;
  */
 public class Feed
 {
-	// Хранится здесь, потому что не палится декомпилятором.
-	public static final String GOOGLE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmDjJVqlnCVUl9OUogyIVfNt16j8/m5k"+"MMI2c1udwHhrC3TN7hGtqT0ZmiZ3aoxkkJtQ7zrrVXbA5p75SAMPmUALsMpiv3HFQGvLAxnDiK7X/kPMlFk8vqgiW90dZdi1uEDPRf6MCC6smDSU6Nas"+"JLxxdhIW2TcMyr9MqxWtDa4TPIiKgWVpIyDwEkoN4Z7VCJ8cvn43wqA6MkSn77+JlnHg46zIPqzMrbDOKCtGjaBxr1DIKS4sWk/pVlTnBRz4GFknoXN7q"+"ROp4kqOMVgCBwGDCan3w1DGEz6RZg5A0PfJKc3QDOYGV2Es/jObsXEkAWh32ZBbpvAnZlZnoNKYhSQIDAQAB";
 	public static final String FEED_API = "https://feed.radiokot.com.ua/cgi-bin/";
 	//"https://feed-radiokot-com-ua-ng8whhe3an0d.runscope.net/cgi-bin/";
 

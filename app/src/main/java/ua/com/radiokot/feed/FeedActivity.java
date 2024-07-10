@@ -11,10 +11,6 @@ import android.widget.FrameLayout;
 
 import androidx.appcompat.widget.PopupMenu;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -24,9 +20,7 @@ import ua.com.radiokot.feed.model.NavigationListItem;
 import ua.com.radiokot.feed.util.FloatingToolbar;
 import ua.com.radiokot.feed.util.NavigationDrawer;
 
-public class FeedActivity extends BaseActivity implements ObservableScrollViewCallbacks,
-        BillingProcessor.IBillingHandler
-{
+public class FeedActivity extends BaseActivity implements ObservableScrollViewCallbacks {
     public static int DISPLAY_WIDTH, DISPLAY_HEIGHT;
     public static int HALF_DP;
 
@@ -42,8 +36,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     public static FeedListAdapter feedListAdapter;
     // ID рекламы.
     private static final String MOPUB_UNIT_ID = "035a5d4d270e4bd492beee82d1cf0f0c";
-    // Обработчик биллинга.
-    private BillingProcessor billingProcessor;
 
     @Override
     protected int getLayoutResource()
@@ -69,9 +61,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
 
         // Настроим навигацию.
         initNavigation();
-
-        // Включим биллинг.
-        billingProcessor = new BillingProcessor(this, Feed.GOOGLE_KEY, this);
 
         // Инициализируем пользователя в ВК.
         notifyAccountChanged();
@@ -286,51 +275,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     }
 
     @Override
-    public void onBillingInitialized()
-    {
-        if (!billingProcessor.isPurchased(DonateActivity.SUPPORT_ITEM_ID))
-        {
-            //mopubAdAdapter.loadAds(MOPUB_UNIT_ID);
-            navigationDrawer.addItem(new NavigationListItem(Spark.resources.getDrawable(R.drawable.ic_heart_outline),
-                    Spark.resources.getString(R.string.navigation_donate_caption), false,
-                    new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            DonateActivity.launch(FeedActivity.this, billingProcessor);
-                        }
-                    }));
-        }
-        else
-        {
-            //mopubAdAdapter.clearAds();
-        }
-    }
-
-    @Override
-    public void onProductPurchased(@NonNull String productId, @Nullable PurchaseInfo details) {
-        if (productId.equals(DonateActivity.SUPPORT_ITEM_ID))
-        {
-            Spark.shortToast(Spark.resources.getString(R.string.toast_donation_thanks));
-            reload();
-        }
-    }
-
-    @Override
-    public void onPurchaseHistoryRestored()
-    {
-
-    }
-
-    @Override
-    public void onBillingError(int i, Throwable throwable)
-    {
-        if (i == 102)
-            billingProcessor.purchase(null, DonateActivity.SUPPORT_ITEM_ID);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         int id = item.getItemId();
@@ -361,9 +305,6 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
     @Override
     public void onDestroy()
     {
-        if (billingProcessor != null)
-            billingProcessor.release();
-
         super.onDestroy();
 
         if (!isReloading)

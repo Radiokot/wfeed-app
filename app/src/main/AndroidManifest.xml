@@ -91,16 +91,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DonateActivity"
-            android:exported="false"
-            android:label="@string/title_activity_donate"
-            android:parentActivityName=".FeedActivity"
-            android:theme="@style/AppTheme.Base.Floating">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ua.com.radiokot.feed.FeedActivity" />
-        </activity>
     </application>
 
 </manifest>
