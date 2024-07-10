@@ -82,7 +82,7 @@ public class FeedListAdapter extends ArrayAdapter<Post>
                 final View child = layoutSocial.getChildAt(i);
 
                 child.setTag(R.id.layoutPost, post);
-                child.setTag(R.id.action_settings, ExpandAction.values()[i]);
+                child.setTag(R.id.layoutSocial, ExpandAction.values()[i]);
                 child.setOnClickListener(clickSocialButton);
 
                 if (child.getVisibility() == View.VISIBLE)
@@ -137,7 +137,7 @@ public class FeedListAdapter extends ArrayAdapter<Post>
         {
             // Получим данные из тега.
             Post post = (Post) v.getTag(R.id.layoutPost);
-            ExpandAction expandAction = (ExpandAction) v.getTag(R.id.action_settings);
+            ExpandAction expandAction = (ExpandAction) v.getTag(R.id.layoutSocial);
 
             if (expandAction == ExpandAction.LIKE)
                 Social.switchPostLikeVk(post, (ImageButton) v);

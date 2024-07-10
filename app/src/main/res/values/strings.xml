@@ -3,7 +3,6 @@
 
     <string name="app_name">Теплофид</string>
     <string name="locale">ru</string>
-    <string name="action_settings" translatable="false">Settings</string>
     <string name="hello_world" translatable="false">Winter Wine</string>
     <string name="title_activity_auth">Авторизация</string>
     <string name="title_activity_feed">Лента</string>
@@ -20,12 +19,9 @@
     <string name="navigation_categories_caption">Категории</string>
     <string name="navigation_favorite_caption">Избранное</string>
     <string name="navigation_rate_caption">Оценить приложение</string>
-    <string name="navigation_suggest_caption">Предложить источник</string>
-    <string name="navigation_donate_caption">Поддержать</string>
     <string name="toast_favorites_add">Добавлено в Избранное</string>
     <string name="toast_favorites_del">Удалено из Избранного</string>
     <string name="toast_rate_wish">Положительная оценка лучше всего мотивирует разработчика ;)</string>
-    <string name="text_ad_sponsored">Реклама</string>
 
     <!-- Post -->
     <string name="post_info_through">" через "</string>
@@ -65,16 +61,11 @@
     <string name="favorites_empty_message">Нажмите на значок ★ под записью, чтобы добавить ее в Избранное.</string>
 
     <!-- IntroActivity-->
-    <string name="title_activity_intro" translatable="false">IntroActivity</string>
     <string name="welcome_caption">Добро пожаловать!</string>
     <string name="welcome_description">Теплофид - это яркие вдохновляющие записи, заботливо собранные из множества источников в одну ленту. Выберите любимые категории и наслаждайтесь качественным постами каждый день!</string>
     <string name="welcome_get_started">НАЧАТЬ</string>
-    <string name="title_activity_donate" translatable="false">DonateActivity</string>
     <string name="privacy_policy"><u>Политика конфиденциальности</u></string>
 
     <!-- DonateActivity-->
-    <string name="donate_reason">Помимо того, что Ваша поддержка помогает развитию приложения, она навсегда убирает рекламу из Ленты и в будущем предоставит Вам доступ к новым платным функциям.\nМир.</string>
-    <string name="button_donate">ПОДДЕРЖАТЬ</string>
-    <string name="toast_donation_thanks">Благодарю за Вашу поддержку!</string>
     <string name="category_authors_count">" источник/ источника/ источников"</string>
 </resources>

@@ -1,5 +1,4 @@
 <resources>
-    <color name="black_overlay">#66000000</color>
     <color name="primary">#795548</color>
     <color name="primary_dark">#5D4037</color>
     <color name="primary_light">#d7ccc8</color>
@@ -9,6 +8,5 @@
     <color name="icons">#FFFFFF</color>
     <color name="post_light">#FFFFFF</color>
     <color name="post_dark">#F6F6F6</color>
-    <color name="divider">#B6B6B6</color>
     <color name="intro_background">#80CBC4</color>
 </resources>
