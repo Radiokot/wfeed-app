@@ -1,5 +1,6 @@
 package ua.com.radiokot.feed;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -12,7 +13,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.multidex.MultiDexApplication;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,7 +46,7 @@ import ua.com.radiokot.feed.util.TLSSocketFactory;
     Коробочка с силами.
 */
 
-public class Spark extends MultiDexApplication
+public class Spark extends Application
 {
     public static Context context;
     public static PackageInfo packageInfo;
