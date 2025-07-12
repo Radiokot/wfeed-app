@@ -3,7 +3,7 @@
     <string name="app_name">Warm Feed</string>
     <string name="info_no_connection_caption">No connection</string>
     <string name="info_no_connection_message">Homing pigeon with new posts is on the way</string>
-    <string name="info_no_data_caption">No data recived</string>
+    <string name="info_no_data_caption">No data received</string>
     <string name="info_no_data_message">Something is wrong with the connection or the server</string>
     <string name="locale">en</string>
     <string name="menu_auth_change">Switch account</string>
@@ -13,7 +13,6 @@
     <string name="navigation_categories_caption">Categories</string>
     <string name="navigation_favorite_caption">Favorites</string>
     <string name="navigation_rate_caption">Rate this app</string>
-    <string name="navigation_suggest_caption">Suggest a source</string>
     <string name="navigation_unauthorized_name">Log in with VK</string>
     <string name="post_date_ago">" ago"</string>
     <string name="post_date_hour">An hour ago</string>
@@ -46,11 +45,6 @@
     <string name="welcome_caption">Hi there!</string>
     <string name="welcome_description">Warm Feed is a stream of inspirational posts collected from a number of sources into a single feed. Choose your favorite categories and enjoy high-quality posts every day!</string>
     <string name="welcome_get_started">GET STARTED</string>
-    <string name="text_ad_sponsored">Sponsored</string>
-    <string name="navigation_donate_caption">Support</string>
-    <string name="donate_reason">Besides the fact that your support helps the development of the application, it removes all advertising from Feed and in the future will give you access to new paid features.\nPeace.</string>
-    <string name="button_donate">SUPPORT</string>
-    <string name="toast_donation_thanks">Thank you for your support!</string>
     <string name="category_authors_count">" sources/ sources/ sources"</string>
 	<string name="toast_photo_save_permission">You need to allow the access to the memory to save photos</string>
     <string name="privacy_policy"><u>Privacy policy</u></string>

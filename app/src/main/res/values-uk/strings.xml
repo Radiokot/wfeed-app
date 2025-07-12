@@ -13,7 +13,6 @@
     <string name="navigation_categories_caption">Категорії</string>
     <string name="navigation_favorite_caption">Обране</string>
     <string name="navigation_rate_caption">Оцінити додаток</string>
-    <string name="navigation_suggest_caption">Запропонувати джерело</string>
     <string name="navigation_unauthorized_name">Увійти через ВК</string>
     <string name="post_date_ago">" тому"</string>
     <string name="post_date_hour">Годину тому</string>
@@ -46,11 +45,6 @@
     <string name="welcome_caption">Вітаємо!</string>
     <string name="welcome_description">Теплофід - це яскраві надихаючі записи, зібрані з багатьох джерел в одну стрічку. Оберіть улюблені категорії та щоденно насолоджуйтесь якісними постами!</string>
     <string name="welcome_get_started">ПОЧАТИ</string>
-    <string name="text_ad_sponsored">Реклама</string>
-    <string name="navigation_donate_caption">Підтримати</string>
-    <string name="donate_reason">Окрім того, що Ваша підтримка сприяє розвитку додатку, вона назавжди прибирає рекламу зі Стрічки та у майбутньому надасть Вам доступ до нових платних функцій.\nМир.</string>
-    <string name="button_donate">ПІДТРИМАТИ</string>
-    <string name="toast_donation_thanks">Дякую за Вашу підтримку!</string>
     <string name="category_authors_count">" джерело/ джерела/ джерел"</string>
 	<string name="toast_photo_save_permission">Для збереження фотографій необхідно дозволити Теплофіду доступ до пям\'яті</string>
     <string name="privacy_policy"><u>Політика конфіденційності</u></string>
