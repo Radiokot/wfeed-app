@@ -1,5 +1,6 @@
 package ua.com.radiokot.feed;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -199,6 +200,8 @@ public class FeedActivity extends BaseActivity implements ObservableScrollViewCa
 
         authMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
         {
+            // Added to gradle.properties
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onMenuItemClick(MenuItem menuItem)
             {

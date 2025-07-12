@@ -1,9 +1,9 @@
 package ua.com.radiokot.feed.util;
 
-import androidx.appcompat.widget.Toolbar;
+import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 
-import com.nineoldandroids.animation.ValueAnimator;
+import androidx.appcompat.widget.Toolbar;
 
 import ua.com.radiokot.feed.Spark;
 
@@ -55,17 +55,12 @@ public class FloatingToolbar
 	{
 		ValueAnimator animator = ValueAnimator.ofFloat(marginFrom, marginTo).setDuration(
 				Spark.resources.getInteger(android.R.integer.config_mediumAnimTime));
-		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
-		{
-			@Override
-			public void onAnimationUpdate(ValueAnimator animation)
-			{
-				int translationY = (int) (float) animation.getAnimatedValue();
-				FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) toolbar.getLayoutParams();
-				lp.topMargin = translationY;
-				toolbar.requestLayout();
-			}
-		});
+		animator.addUpdateListener(animation -> {
+            int translationY = (int) (float) animation.getAnimatedValue();
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) toolbar.getLayoutParams();
+            lp.topMargin = translationY;
+            toolbar.requestLayout();
+        });
 		animator.start();
 	}
 

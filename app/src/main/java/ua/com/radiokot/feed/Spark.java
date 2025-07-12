@@ -14,9 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.multidex.MultiDexApplication;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.security.ProviderInstaller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -113,15 +110,6 @@ public class Spark extends MultiDexApplication
 
         // Читаем настройки.
         readPrefs();
-
-        // Modern TLS for bad devices.
-        if (areGooglePlayServicesAvailable()) {
-            try {
-                ProviderInstaller.installIfNeeded(this);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     // Получить ответ в JSON.
@@ -196,12 +184,6 @@ public class Spark extends MultiDexApplication
                 return null;
             }
         }
-    }
-
-    private boolean areGooglePlayServicesAvailable() {
-        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(this);
-        return resultCode == ConnectionResult.SUCCESS;
     }
 
     // Короткий Toast.
