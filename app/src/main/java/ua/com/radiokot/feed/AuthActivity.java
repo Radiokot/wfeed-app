@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -12,9 +13,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AuthActivity extends BaseActivity
 {
@@ -39,6 +37,7 @@ public class AuthActivity extends BaseActivity
         webviewAuth = (WebView) findViewById(R.id.webviewAuth);
         webviewAuth.clearCache(true);
         webviewAuth.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webviewAuth.getSettings().setJavaScriptEnabled(true);
 
         // чтобы получать уведомления об окончании загрузки страницы
         webviewAuth.setWebViewClient(new VKWebViewClient());
@@ -86,16 +85,11 @@ public class AuthActivity extends BaseActivity
                 return;
             if (url.startsWith("https://oauth.vk.com/blank.html"))
             {
-                Pattern authPattern = Pattern.compile("access_token=(\\w+)\\&");
-                Matcher authMatcher = authPattern.matcher(url);
-
-                if (authMatcher.find())
-                    token = authMatcher.group(1);
+                Uri parsedUri = Uri.parse(url.replace('#', '?'));
+                token = parsedUri.getQueryParameter("access_token");
 
                 finish();
             }
-            else
-                return;
         }
         catch (Exception e)
         {
