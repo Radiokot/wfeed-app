@@ -1,6 +1,7 @@
 package ua.com.radiokot.feed;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,16 +12,15 @@ import android.os.Environment;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -47,8 +47,8 @@ public class PhotoActivity extends BaseActivity
 	private GestureDetector gestureDetector;
 	private PhotoPagerAdapter adapter;
 	private TouchImageView[] imageViews;
-    private View decorView;
 	private String photoUrlToSave;
+	private WindowInsetsControllerCompat windowInsetsController;
 
 	//слушатель изменения страницы pager'a
 	private ViewPager.SimpleOnPageChangeListener pageChangeListener =
@@ -84,14 +84,23 @@ public class PhotoActivity extends BaseActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		if (Build.VERSION.SDK_INT < 16)
-		{
-			supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-					WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		}
-
 		super.onCreate(savedInstanceState);
+
+		windowInsetsController = new WindowInsetsControllerCompat(
+                getWindow(),
+                getWindow().getDecorView()
+        );
+		getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
+			ActionBar actionBar = getSupportActionBar();
+			if (actionBar == null) {
+				return;
+			}
+			if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == View.SYSTEM_UI_FLAG_FULLSCREEN) {
+				actionBar.hide();
+			} else {
+				actionBar.show();
+			}
+        });
 
 		//скроем название и покажем кнопку назад в тулбаре
         ActionBar actionBar = getSupportActionBar();
@@ -101,7 +110,6 @@ public class PhotoActivity extends BaseActivity
         }
 
 		//получим DecorView и перерисуем интерфейс
-		decorView = getWindow().getDecorView();
 		showSystemUI();
 
 		//создадим view'ы для фотографий
@@ -113,27 +121,17 @@ public class PhotoActivity extends BaseActivity
 
 			//отключим кликающий звук и назначим скрытие интерфейса по клику
 			imageViews[i].setSoundEffectsEnabled(false);
-			imageViews[i].setOnClickListener(new View.OnClickListener()
-			{
-				@Override
-				public void onClick(View v)
-				{
-					if (isUIVisible())
-						hideSystemUI();
-					else
-						showSystemUI();
-				}
-			});
-			//настроим отлавливание свайпа
+			imageViews[i].setOnClickListener(v -> {
+                if (isUIVisible())
+                    hideSystemUI();
+                else
+                    showSystemUI();
+            });
 
-			imageViews[i].setOnTouchListener(new View.OnTouchListener()
-			{
-				@Override
-				public boolean onTouch(View v, MotionEvent event)
-				{
-					return ((!((TouchImageView) v).isZoomed()) && (gestureDetector.onTouchEvent(event)));
-				}
-			});
+			//настроим отлавливание свайпа
+			imageViews[i].setOnTouchListener((v, event) ->
+					((!((TouchImageView) v).isZoomed()) && (gestureDetector.onTouchEvent(event)))
+			);
 		}
 
 		//настроим слайдер
@@ -158,7 +156,8 @@ public class PhotoActivity extends BaseActivity
 		return true;
 	}
 
-	@Override
+	@SuppressLint("NonConstantResourceId")
+    @Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId())
@@ -307,39 +306,13 @@ public class PhotoActivity extends BaseActivity
 	// Скрытие интерфейса
 	public void hideSystemUI()
 	{
-		if (Build.VERSION.SDK_INT >= 16)
-		{
-			decorView.setSystemUiVisibility(
-					View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-							| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-							| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-							| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-							| View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-							| ((Build.VERSION.SDK_INT >= 19) ? View.SYSTEM_UI_FLAG_IMMERSIVE : 0)
-			);
-		} else {
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.hide();
-            }
-        }
-	}
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
+    }
 
 	//Показ интерфейса
 	public void showSystemUI()
 	{
-		if (Build.VERSION.SDK_INT >= 16)
-		{
-			decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-					| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-					| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-			);
-		} else {
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
-            }
-        }
+        windowInsetsController.show(WindowInsetsCompat.Type.systemBars());
 	}
 
 	//Запуск с передачей поста
